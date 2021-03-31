@@ -1,6 +1,6 @@
 package projetinhojavapoo;
 
-public class Video {
+public class Video implements AcoesVideo{
     //Atributos
     private String titulo;
     private int avaliacao;
@@ -9,41 +9,60 @@ public class Video {
     private boolean reproduzindo;
     //Métodos
     //Métodos especiais
-    public Video(String ti, int av, int vi, int c, boolean re) {
+    public Video(String ti) {
         this.titulo = ti;
-        this.avaliacao = av;
-        this.views = vi;
-        this.curtidas = c;
-        this.reproduzindo = re;
+        this.avaliacao = 1;
+        this.views = 0;
+        this.curtidas = 0;
+        this.reproduzindo = false;
     }
     public String getTitulo() {
-        return this.titulo;
+        return titulo;
     }
-    public void setTitulo(String ti) {
-        this.titulo = ti;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
     public int getAvaliacao() {
-        return this.avaliacao;
+        return avaliacao;
     }
-    public void setAvaliacao(int av) {
-        this.avaliacao = av;
+    public void setAvaliacao(int avaliacao) {
+        this.avaliacao = avaliacao;
     }
     public int getViews() {
-        return this.views;
+        return views;
     }
-    public void setViews(int vi) {
-        this.views = vi;
+    public void setViews(int views) {
+        this.views = views;
     }
     public int getCurtidas() {
-        return this.curtidas;
+        return curtidas;
     }
-    public void setCurtidas(int c) {
-        this.curtidas = c;
+    public void setCurtidas(int curtidas) {
+        this.curtidas = curtidas;
     }
     public boolean isReproduzindo() {
-        return this.reproduzindo;
+        return reproduzindo;
     }
-    public void setReproduzindo(boolean re) {
-        this.reproduzindo = re;
+    public void setReproduzindo(boolean reproduzindo) {
+        this.reproduzindo = reproduzindo;
+    }
+    //Métodos Interface
+    @Override
+    public void play() {
+        this.setReproduzindo(true);
+    }
+    @Override
+    public void pause() {
+        this.setReproduzindo(false);
+    }
+    @Override
+    public void like() {
+        this.setCurtidas(this.getCurtidas()+ 1);
+    }
+    @Override 
+    public String toString(){
+        return "\nTitulo: "+this.getTitulo()+"\nAvaliacao: "+this.getAvaliacao()
+                +"\nViews: "+this.getViews()+"\nCurtidas: "+this.getCurtidas()
+                +"\nReproduzindo: "+this.isReproduzindo()+"\n";
     }
 }
